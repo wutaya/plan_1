@@ -9,7 +9,7 @@ class DeploymentController extends Controller
     public function deploy(Request $request)
     {
         $commands = ['cd /var/www/html/plan_1', 'git pull'];
-        $signature = $request->header('X-Hub_signature');
+        $signature = $request->header('X-Hub-signature');
         $payload = file_get_contents('php://input');
         if ($this->isFromGithub($payload, $signature)) {
             foreach ($commands as $command) {
